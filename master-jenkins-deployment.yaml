@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: jenkinsnode
+          image: jenkinsnode:latest
           imagePullPolicy: Never
           env:
             - name: JAVA_OPTS
@@ -30,3 +30,18 @@ spec:
       volumes:
         - name: jenkins-home
           emptyDir: {}
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: jenkins

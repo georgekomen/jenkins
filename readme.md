@@ -13,6 +13,6 @@ You would need to do that to eanble jenkins scale up and down depending on build
 
 # docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d mailhog/mailhog // 1025 is the smtp port and 8025 the http port
 
-# minikube kubectl apply -f master-jenkins-deployment.yaml // deploy to minikube 
+# kubectl apply -f master-jenkins-deployment.yaml // deploy to minikube 
 
 - imagePullPolicy: Never // this is when running on minikube to disable minikube from trying to download the image
