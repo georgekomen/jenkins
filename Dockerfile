@@ -1,12 +1,13 @@
 FROM node:alpine AS node
 
-FROM jenkins/jenkins:alpine
+FROM jenkins/jenkins:2.60.1
 
-LABEL maintainer="komen"
+LABEL maintainer="george komen <gkkomensi@gmail.com>"
 
 # Switch to root user
 USER root
 
+# copy node and npm files
 COPY --from=node /usr/local/bin/node /usr/local/bin/
 COPY --from=node /usr/local/include/node/ /usr/local/include/node/
 COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
@@ -24,13 +25,20 @@ RUN set -ex \
     && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg \
     && cd /
 
-# Switch to jenkins user
+# Distributed Builds plugins
+RUN /usr/local/bin/install-plugins.sh ssh-slaves
+# install Notifications and Publishing plugins
+RUN /usr/local/bin/install-plugins.sh email-ext
+RUN /usr/local/bin/install-plugins.sh mailer
+RUN /usr/local/bin/install-plugins.sh slack
+# Artifacts
+RUN /usr/local/bin/install-plugins.sh htmlpublisher
+# UI
+RUN /usr/local/bin/install-plugins.sh greenballs
+RUN /usr/local/bin/install-plugins.sh simple-theme-plugin
+# Scaling
+RUN /usr/local/bin/install-plugins.sh kubernetes
+# install Maven
+RUN apt-get update && apt-get install -y maven
+
 USER jenkins
-
-# docker build -t jenkinsnode ~/Desktop/projects/jenkinsDocker/
-
-# docker run --name jenkinsnode -d -p 49001:8080 -v ~/jenkins:/var/jenkins_home:z -t jenkinsnode // /var/jenkins_home from the container is mapped to jenkins/ directory from the current path on the host. Jenkins 8080 port is also exposed to the host as 49001
-
-# docker exec -it --user root jenkinsnode bash -c "ls" // executing command inside docker container as root
-
-# docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d mailhog/mailhog // 1025 is the smtp port and 8025 the http port
