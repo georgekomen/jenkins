@@ -15,7 +15,7 @@ spec:
       containers:
         - name: jenkins
           image: jenkinsnode:latest
-          imagePullPolicy: Never
+          imagePullPolicy: Never #this is when running on minikube to disable minikube from trying to download the image
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false
