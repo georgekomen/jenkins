@@ -1,18 +1,16 @@
 This is a setup for running jenkins on top of kubernetes.
-
 You would need to do that to eanble jenkins scale up and down depending on builds done
 
 ---
 **procedure**
 - eval $(minikube docker-env) // this enables you build your docker image right inside your Minikube virtual machine
-
 - docker build -t jenkinsnode ~/Desktop/projects/jenkinsDocker/
-
 - kubectl apply -f master-jenkins-deployment.yaml // deploy to minikube
 
 ---
 **executing shell commands on kubernetes**
-kubectl exec -it <pod-name> ls /
+- kubectl get pods // to get pod name
+- kubectl exec -it <pod-name> ls /
 
 ---
 **new learnings on deployment**
