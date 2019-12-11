@@ -37,3 +37,6 @@
 - get jenkins pod name => `kubectl get pods | grep jenkins`
 - get jenkins pod url/ip => `kubectl describe pod <pod-name>` //e.g. IP:172.17.0.5
 - navigate to 'Manage Jenkins -> Configure System -> Cloud -> Kubernetes' and setup things up, visit https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster/ for more instructions
+- form fills under kubernetes : name - kubernetes, kubernetes URL - e.g. http://192.168.64.2:8443, jenkins URL - e.g. http://172.17.0.5
+- form fills under pod template : name - jenkins-slave, labels - jenkins-slave, Usage - 'use this node as much as possible'
+- form fills under container : name - jenkins-slave, docker image - jenkinsci/jnlp-slave, working directory - /home/jenkins, command to run - /bin/sh -c, arguments to pass to the command - cat
