@@ -1,7 +1,5 @@
-Inspired by : https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster/
-
-This is a setup for running jenkins on top of kubernetes.
-You would need to do that to eanble jenkins scale up and down depending on builds done
+- This is a setup for running jenkins on top of kubernetes. You need this to enable jenkins scale up and down depending on builds done / load
+- Inspired by : https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster/
 
 ---
 **procedure**
@@ -39,4 +37,3 @@ You would need to do that to eanble jenkins scale up and down depending on build
 - get jenkins pod name => `kubectl get pods | grep jenkins`
 - get jenkins pod url/ip => `kubectl describe pod <pod-name>` //e.g. IP:172.17.0.5
 - navigate to 'Manage Jenkins -> Configure System -> Cloud -> Kubernetes' and setup things up, visit https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster/ for more instructions
-
