@@ -6,7 +6,7 @@ You would need to do that to eanble jenkins scale up and down depending on build
 ---
 **procedure**
 - `eval $(minikube docker-env)` // this enables you build your docker image right inside your Minikube virtual machine
-- `docker build -t jenkinsnode ~/Desktop/projects/jenkinsDocker/`
+- `docker build -t jenkinsnode:v1 ~/Desktop/projects/jenkinsDocker/`
 - `kubectl apply -f master-jenkins-deployment.yaml` // deploy to minikube
 
 ---
@@ -36,7 +36,7 @@ You would need to do that to eanble jenkins scale up and down depending on build
 
 **jenkins slaves configuration**
 - get master url => `kubectl cluster-info | grep master` to get kubernetes master ip and port
-- get jenkins pod name => `kubernetes-jenkins-infrastructure kubectl get pods | grep jenkins`
-- get jenkins pod url/ip => `kubernetes-jenkins-infrastructure kubectl describe pod <pod-name>`
+- get jenkins pod name => `kubectl get pods | grep jenkins`
+- get jenkins pod url/ip => `kubectl describe pod <pod-name>` //e.g. IP:172.17.0.5
 - navigate to 'Manage Jenkins -> Configure System -> Cloud -> Kubernetes' and setup things up, visit https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster/ for more instructions
 

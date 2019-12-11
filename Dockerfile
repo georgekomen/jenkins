@@ -1,6 +1,6 @@
 FROM node:alpine AS node
 
-FROM jenkins/jenkins:2.60.1
+FROM jenkins/jenkins:lts
 
 LABEL maintainer="george komen <gkkomensi@gmail.com>"
 
