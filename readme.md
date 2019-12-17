@@ -32,6 +32,7 @@
 - run `minikube ip` to get minikube ip (public ip == minikube ip)
 - access jenkins in browser by : minikubeIp:port e.g. http://192.168.64.2:30919/
 
+-------
 **jenkins slaves configuration**
 - get master url => `kubectl cluster-info | grep master` to get kubernetes master ip and port
 - get jenkins pod name => `kubectl get pods | grep jenkins`
